@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=bd_Spring_StudentsCRUD;encrypt=true;trustServerCertificate=true;integratedSecurity=true
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.SQLServerDialect
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true

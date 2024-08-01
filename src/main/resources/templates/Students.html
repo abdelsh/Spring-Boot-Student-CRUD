@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of students</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-center">
+    <a class="navbar-brand" href="#">Student's control panel</a>
+<!--    Navbar links-->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a th:href="@{/Students}">Students panel </a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+  <div class="container">
+    <div class="row">
+        <h1>Students List</h1>
+    </div>
+
+      <div class="row">
+          <div class="col-lg-3">
+              <a th:href="@{/Student/new}" class="btn btn-primary btn-sm mb3">Add new student</a>
+          </div>
+      </div>
+      <br>
+      <table class="table table-striped table-bordered">
+          <thead class="thead-dark">
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">First name</th>
+              <th scope="col">Last name</th>
+              <th scope="col">email</th>
+              <th scope="col">Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="student : ${students}">
+              <td th:if="${student.getId()}" th:text="${student.getId()}">1</td>
+              <td th:unless="${student.getId()}">N/A</td>
+              <td th:if="${student.getFirstName()}" th:text="${student.getFirstName()}">FirstName</td>
+              <td th:unless="${student.getFirstName()}">N/A</td>
+              <td th:if="${student.getLastName()}" th:text="${student.getLastName()}">LastName</td>
+              <td th:unless="${student.getLastName()}">N/A</td>
+              <td th:if="${student.getEmail()}" th:text="${student.getEmail()}">email@example.com</td>
+              <td th:unless="${student.getEmail()}">N/A</td>
+
+              <td>
+                  <a th:href="@{/Students/edit/{id}(id=${student.getId()})}" class="btn btn-info">Update</a>
+                  <a th:href="@{/Students/{id}(id=${student.getId()})}" class="btn btn-danger">Delete</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</body>
+</html>
